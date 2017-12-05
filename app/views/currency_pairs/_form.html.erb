@@ -1,0 +1,21 @@
+<%= form_for(@currency_pair) do |f| %>
+  <% if @currency_pair.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@currency_pair.errors.count, "error") %> prohibited this currency_pair from being saved:</h2>
+
+      <ul>
+      <% @currency_pair.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
