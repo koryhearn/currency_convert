@@ -38,3 +38,11 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'bundler'
+
+gem 'rails_config'
+gem 'bootstrap-sass', '3.3.5'
+gem 'bootstrap-sass-extras'
+gem 'delayed_job_active_record'
+gem 'validates_formatting_of'
+gem 'tzinfo-data'
