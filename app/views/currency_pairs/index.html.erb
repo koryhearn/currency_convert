@@ -1,25 +1,36 @@
-<h1>Listing currency_pairs</h1>
-
-<table>
+<%- model_class = CurrencyPair -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => CurrencyPair %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @currency_pairs.each do |currency_pair| %>
       <tr>
+        <td><%= currency_pair.id %></td>
         <td><%= currency_pair.name %></td>
-        <td><%= link_to 'Show', currency_pair %></td>
-        <td><%= link_to 'Edit', edit_currency_pair_path(currency_pair) %></td>
-        <td><%= link_to 'Destroy', currency_pair, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l currency_pair.created_at, format: :long %></td>
+        <td>
+          <%= link_to currency_pair_path(currency_pair), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to currency_pair_path(currency_pair), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Currency pair', new_currency_pair_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_currency_pair_path,
+            :class => 'btn btn-primary' %>
